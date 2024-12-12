@@ -1,7 +1,7 @@
-principal = int(input("1000"))
-rate = float(input("0.05"))
-time = float(input("3"))
+principal = 1000
+rate = 5
+time = 3
 
 interest = (principal * rate * time) / 100
 
-print("Simple interest is:", interest)
+print("Simple interest is", interest)
