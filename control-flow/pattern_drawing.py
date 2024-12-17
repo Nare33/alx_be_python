@@ -16,5 +16,5 @@ def main():
                     print("*", end="")
                     print()
 
-                    if __name == "__main":
+                    if __name == "__main__":
                         main()
