@@ -3,7 +3,7 @@ def main():
 
     while True:
         try:
-            size = innt(input("Enter the sze of th pattern interger): "))
+            size = int(input("Enter the size of the pattern (positive interger): "))
             if size > 0:
                 break
             else:
@@ -17,3 +17,4 @@ def main():
                     print()
 
                     if __name == "__main":
+                        main()
