@@ -1,169 +1,65 @@
+# Base class Book
 class Book:
-  """
-  A base class representing a book with title and author attributes.
-  """
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
 
-  def __init__(self, title: str, author: str):
-    """
-    Initializes a Book instance with title and author.
+    def __str__(self):
+        return f"Book: {self.title} by {self.author}"
 
-    Args:
-      title: The title of the book.
-      author: The author of the book.
-    """
-    self.title = title
-    self.author = author
-
-
+# Derived class EBook
 class EBook(Book):
-  """
-  A derived class representing an Ebook with additional file size attribute.
-  """
+    def __init__(self, title, author, file_size):
+        # Initialize the base class
+        super().__init__(title, author)
+        self.file_size = file_size
 
-  def __init__(self, title: str, author: str, file_size: int):
-    """
-    Initializes an EBook instance with title, author, and file size.
+    def __str__(self):
+        return f"EBook: {self.title} by {self.author}, File Size: {self.file_size}KB"
 
-    Args:
-      title: The title of the Ebook.
-      author: The author of the Ebook.
-      file_size: The file size of the Ebook in MB.
-    """
-    super().__init__(title, author)
-    self.file_size = file_size
-
-
+# Derived class PrintBook
 class PrintBook(Book):
-  """
-  A derived class representing a PrintBook with additional page count attribute.
-  """
+    def __init__(self, title, author, page_count):
+        # Initialize the base class
+        super().__init__(title, author)
+        self.page_count = page_count
 
-  def __init__(self, title: str, author: str, page_count: int):
-    """
-    Initializes a PrintBook instance with title, author, and page count.
+    def __str__(self):
+        return f"PrintBook: {self.title} by {self.author}, Page Count: {self.page_count}"
 
-    Args:
-      title: The title of the PrintBook.
-      author: The author of the PrintBook.
-      page_count: The number of pages in the PrintBook.
-    """
-    super().__init__(title, author)
-    self.page_count = page_count
-
-
+# Library class demonstrating composition
 class Library:
-  """
-  A class representing a library that manages a collection of books.
-  """
+    def __init__(self):
+        self.books = []
 
-  def __init__(self):
-    """
-    Initializes a Library instance with an empty list to store books.
-    """
-    self.books = []
+    def add_book(self, book):
+        # Add a book to the library
+        self.books.append(book)
 
-  def add_book(self, book: Book):
-    """
-    Adds a Book, EBook, or PrintBook instance to the library collection.
+    def list_books(self):
+        # Print details of all books in the library
+        for book in self.books:
+            print(book)
 
-    Args:
-      book: A Book, EBook, or PrintBook instance.
-    """
-    self.books.append(book)
+from library_system import Book, EBook, PrintBook, Library
 
-  def list_books(self):
-    """
-    Prints details of each book in the library collection.
-    """
-    for book in self.books:
-      if isinstance(book, EBook):
-        print(f"E-Book - Title: {book.title}, Author: {book.author}, File Size: {book.file_size}MB")
-      elif isinstance(book, PrintBook):
-        print(f"Print Book - Title: {book.title}, Author: {book.author}, Page Count: {book.page_count} pages")
-      else:
-        print(f"Book - Title: {book.title}, Author: {book.author}")
+def main():
+    # Create a Library instance
+    my_library = Library()
 
-        class Book:
-  """
-  A base class representing a book with title and author attributes.
-  """
+    # Create instances of each type of book
+    classic_book = Book("Pride and Prejudice", "Jane Austen")
+    digital_novel = EBook("Snow Crash", "Neal Stephenson", 500)
+    paper_novel = PrintBook("The Catcher in the Rye", "J.D. Salinger", 234)
 
-  def __init__(self, title: str, author: str):
-    """
-    Initializes a Book instance with title and author.
+    # Add books to the library
+    my_library.add_book(classic_book)
+    my_library.add_book(digital_novel)
+    my_library.add_book(paper_novel)
 
-    Args:
-      title: The title of the book.
-      author: The author of the book.
-    """
-    self.title = title
-    self.author = author
+    # List all books in the library
+    my_library.list_books()
 
+if __name__ == "__main__":
+    main()
 
-class EBook(Book):
-  """
-  A derived class representing an Ebook with additional file size attribute.
-  """
-
-  def __init__(self, title: str, author: str, file_size: int):
-    """
-    Initializes an EBook instance with title, author, and file size.
-
-    Args:
-      title: The title of the Ebook.
-      author: The author of the Ebook.
-      file_size: The file size of the Ebook in MB.
-    """
-    super().__init__(title, author)
-    self.file_size = file_size
-
-
-class PrintBook(Book):
-  """
-  A derived class representing a PrintBook with additional page count attribute.
-  """
-
-  def __init__(self, title: str, author: str, page_count: int):
-    """
-    Initializes a PrintBook instance with title, author, and page count.
-
-    Args:
-      title: The title of the PrintBook.
-      author: The author of the PrintBook.
-      page_count: The number of pages in the PrintBook.
-    """
-    super().__init__(title, author)
-    self.page_count = page_count
-
-
-class Library:
-  """
-  A class representing a library that manages a collection of books.
-  """
-
-  def __init__(self):
-    """
-    Initializes a Library instance with an empty list to store books.
-    """
-    self.books = []
-
-  def add_book(self, book: Book):
-    """
-    Adds a Book, EBook, or PrintBook instance to the library collection.
-
-    Args:
-      book: A Book, EBook, or PrintBook instance.
-    """
-    self.books.append(book)
-
-  def list_books(self):
-    """
-    Prints details of each book in the library collection.
-    """
-    for book in self.books:
-      if isinstance(book, EBook):
-        print(f"E-Book - Title: {book.title}, Author: {book.author}, File Size: {book.file_size}MB")
-      elif isinstance(book, PrintBook):
-        print(f"Print Book - Title: {book.title}, Author: {book.author}, Page Count: {book.page_count} pages")
-      else:
-        print(f"Book - Title: {book.title}, Author: {book.author}")
