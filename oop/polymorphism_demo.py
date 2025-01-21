@@ -1,65 +1,39 @@
+import math
+
+# Base Class: Shape
 class Shape:
-  """
-  A base class representing a geometric shape.
-  """
+    def area(self):
+        raise NotImplementedError("This method should be overridden by subclasses")
 
-  def area(self):
-    """
-    Abstract method to calculate the area of the shape.
-
-    Raises:
-      NotImplementedError: This method is not implemented in the base class and
-        needs to be overridden by derived classes.
-    """
-    raise NotImplementedError("Subclasses must implement area()")
-
-
+# Derived Class: Rectangle
 class Rectangle(Shape):
-  """
-  A derived class representing a rectangle shape.
-  """
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
 
-  def __init__(self, length: float, width: float):
-    """
-    Initializes a Rectangle instance with length and width.
+    def area(self):
+        return self.length * self.width
 
-    Args:
-      length: The length of the rectangle.
-      width: The width of the rectangle.
-    """
-    self.length = length
-    self.width = width
-
-  def area(self):
-    """
-    Calculates and returns the area of the rectangle.
-
-    Returns:
-      The area of the rectangle (length x width).
-    """
-    return self.length * self.width
-
-
+# Derived Class: Circle
 class Circle(Shape):
-  """
-  A derived class representing a circle shape.
-  """
+    def __init__(self, radius):
+        self.radius = radius
 
-  def __init__(self, radius: float):
-    """
-    Initializes a Circle instance with radius.
+    def area(self):
+        return math.pi * self.radius ** 2
 
-    Args:
-      radius: The radius of the circle.
-    """
-    self.radius = radius
+from polymorphism_demo import Shape, Rectangle, Circle
+import math
 
-  def area(self):
-    """
-    Calculates and returns the area of the circle.
+def main():
+    shapes = [
+        Rectangle(10, 5),  # A rectangle with length 10 and width 5
+        Circle(7)  # A circle with radius 7
+    ]
 
-    Returns:
-      The area of the circle (pi * radius squared).
-    """
-    import math
-    return math.pi * self.radius * self.radius
+    for shape in shapes:
+        print(f"The area of the {shape.__class__.__name__} is: {shape.area()}")
+
+if __name__ == "__main__":
+    main()
+
